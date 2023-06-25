@@ -48,4 +48,9 @@ describe('DashboardComponent', () => {
   it('should display 4 links', waitForAsync(() => {
     expect(fixture.nativeElement.querySelectorAll('a').length).toEqual(4);
   }));
+
+  it('should contain app-hero-search component', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('app-hero-search')).toBeTruthy();
+  });
 });
