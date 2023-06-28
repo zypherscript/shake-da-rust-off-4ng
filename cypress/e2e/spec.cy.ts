@@ -14,8 +14,21 @@ describe('Tour of Heroes App Testing', { testIsolation: false }, () => {
     cy.contains('Hero Search');
   });
 
-  it(`Should have title 'Messages'`, () => {
-    cy.contains('Messages');
+  it('should display the header with text "Messages"', () => {
+    cy.get('.messages h2').should('contain', 'Messages');
+  });
+
+  it('should add and display messages', () => {
+    cy.get('.messages .message')
+      .should('have.length', 1)
+      .each((messageElement, index) => {
+        cy.wrap(messageElement).should('contain', 'fetched heroes');
+      });
+  });
+
+  it('should clear messages', () => {
+    cy.get('.messages .clear').click();
+    cy.get('.messages .message').should('not.exist');
   });
 
   it(
